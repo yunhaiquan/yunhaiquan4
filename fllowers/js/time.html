@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .box{
+        width: 592px;
+        height: 84px;
+        height: auto;
+        margin: 0 auto;
+        background: whitesmoke;
+        font-size: 30px;
+        font-family:"Arial Rounded MT Bold";
+        text-align: center;
+        line-height: 84px;
+    }
+
+</style>
+<div class="box"><span></span>月<span></span>日<span></span>时<span></span>分<span></span>秒</div>
+<script>
+    let spans=document.querySelectorAll('span');
+    setDate()
+    setInterval(setDate,1000)
+    function setDate() {
+        let arr = fn()
+        arr.forEach((element, index) => {
+            spans[index].innerText = element;
+        })
+    }
+    function fn() {
+    let arr=[]
+        let now = new Date()
+        let date = new Date()
+        date.setMonth(5);
+        date.setDate(18)
+        date.setHours(0)
+        date.setMinutes(0)
+        date.setSeconds(0)
+        let time = Math.floor((date.getTime() - now.getTime())) / 1000
+        let month = Math.floor(time / (60 * 60 * 24 * 30))
+        arr.push(month);
+        time = time % (60 * 60 * 24 * 30);
+        let day = Math.floor(time / (60 * 24 * 60))
+        arr.push(day)
+        time = time % (60*24*60)
+        let hours = Math.floor(time / (60 * 60))
+        arr.push(hours)
+        time = time % (60*60)
+        let minutes = Math.floor(time / 60)
+        arr.push(minutes)
+        let seconds = time % 60
+        arr.push(seconds);
+        return arr;
+    }
+</script>
+</body>
+</html>
